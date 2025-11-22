@@ -1,16 +1,24 @@
 # KNI_SP_2025/2026
 
-## [Numer zespolu(np. A1)] [Nazwa projektu] DO UZUPELNIENIA
+## [A5] [Nazwa projektu]
 
 ### Zespół
 
-|-Osoba 1(Lider)<br>
-|-Osoba 2<br>
+Maciej Kot(L)<br>
+Hubert Fusiarz<br>
+Konrad Szyszlak<br>
+Filip Kokoszka<br>
+Michał Gaweł<br>
+Norbert Fuk<br>
 ...
 
 ### Technologię
 
-|-Docker<br>
+Docker<br>
+React<br>
+Node.js<br>	
+React Native<br>
+PostgreSQL<br>
 ...
 
 ### Struktura projektu
