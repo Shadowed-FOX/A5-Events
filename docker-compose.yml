@@ -1,1 +1,47 @@
-do uzupelnienia
+version: '3.8'
+
+services:
+  # --- Baza Danych (PostgreSQL) ---
+  db:
+    image: postgres:15-alpine
+    container_name: a5_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: a5events_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # --- Backend (Node/Express) ---
+  api:
+    build: ./backend
+    container_name: a5_backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app          
+      - /app/node_modules       
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/a5events_db
+      PORT: 3000
+
+  # --- Frontend (React/Vite) ---
+  client:
+    build: ./frontend
+    container_name: a5_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app         
+      - /app/node_modules       
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
+
+volumes:
+  postgres_data:
